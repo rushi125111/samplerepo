@@ -1,0 +1,43 @@
+sudo apt-get install unzip
+
+wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+
+unzip terraform_0.11.11_linux_amd64.zip
+
+sudo mv terraform /usr/local/bin/
+
+# To check installed version 
+
+terraform --version
+
+#  azure network using terraform 
+resource "azurerm_virtual_network""myterraformnetwork"
+  {
+     name = "myvnet"
+     address_space = ["10.0.0.0/16"]
+     location="East US"
+     resource_group_name="er-tyjy"
+   }
+
+
+++++++++++++++++++++++++Variable++++++++++++++++++++
+variable "rg"
+{
+default = "terraform-lab2"   ##################  Using string
+}
+variable "locations"
+{ 
+default = ["ap-southeast-1" , "ap-southeast-2"]           #################Using list
+}
+variable "tags"
+{
+  type = "map"                                         ####################Using map
+  default = 
+        {
+         environment = "training"
+         source="citadel"
+        }
+ }
+
+++++++++++++++++++++++++Youtube++++++++++++++++++++++++
+https://www.youtube.com/watch?v=RA1mNClGYJ4
